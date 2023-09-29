@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Box, Typography, useMediaQuery, useTheme} from "@mui/material";
+import Navbar from "./components/Navbar";
+import MyRoutes from "./utils/MyRoutes";
+import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Footer from "./components/Footer";
+import MobileNav from "./components/MobileNav";
 
 function App() {
+  const theme = useTheme()
+  const onlySmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{direction: 'rtl'}}>
+      <Box className="bg-neutral-50">
+          {onlySmallScreen ? <MobileNav/> : <Navbar/>}
+          <MyRoutes/>
+          {/* <Footer/> */}
+      </Box>
     </div>
   );
 }
